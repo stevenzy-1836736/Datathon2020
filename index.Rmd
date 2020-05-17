@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis on Grocery Retail Data"
-author: "Zhenyu Huang, Woongjin Jang, Yuyong Zhe"
+author: "Zhenyu Huang, Woongjin Jang, Yongzhe Yu"
 date: "5/16/2020"
 output: html_document
 ---
