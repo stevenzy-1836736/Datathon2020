@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis on Grocery Retail Data"
-author: "Steven"
+author: "Zhenyu Huang, Woongjin Jang, Yuyong Zhe"
 date: "5/16/2020"
 output: html_document
 ---
@@ -10,14 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 source("analysis.R")
 ```
 
-## Trends with Respect to Time
-plot 1:
+### Trends with Respect to Time
 `r interactive_plot`
 
-plot 2:
 `r interactive_plot2`
 
 
-Analysis:
+## Analysis:
+Graphs shown below focus on categories that have _zero_ transactions for more than 90 days in the 2016-2019 time period. We found specialties in these categories and were interested to investigate them. The first graph is an aggregate graph, taking all selected categories distinguished by colors, and placing them in a time _vs_ units sold plot, and the second graph shows each categories individually. From the second graph, we can see that about half of the categories are sold seasonally. For example, stone fruits are usually sold from November to June each year. From July to October, there are nearly no product sold during this period of time. One of the interesting thing from these categories is the amount bought for pumpkins does not show any significant change throughout the year even during the month of Halloween. 
 
 

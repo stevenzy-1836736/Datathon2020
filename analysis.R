@@ -32,11 +32,30 @@ filtered_categories <- nameToDate %>%
 
 sample_plot <- ggplot(data = filtered_categories) +
   geom_point(mapping = aes(x = cleaned_date, y = sumUnit, color = CATEGORY)) +
-  scale_color_brewer(palette = "Set3")
+  scale_color_brewer(palette = "Set3") + 
+  theme(
+    axis.ticks.x = element_blank(),
+    axis.text.x = element_blank()
+  ) +
+  labs(
+    title = "Total Units Sold, 2016-2019",
+    x = "Date",
+    y = "Total # of Units"
+  )
 
 sample_plot2 <- ggplot(data = filtered_categories) +
-  geom_point(mapping = aes(x = cleaned_date, y = sumUnit)) +
-  facet_wrap(~CATEGORY)
+  geom_point(mapping = aes(x = cleaned_date, y = sumUnit, color = CATEGORY)) +
+  facet_wrap(~CATEGORY) + 
+  theme(
+    strip.text.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank()
+  ) +
+  labs(
+    title = "Total Units Sold, 2016-2019",
+    x = "Date"
+  )
 
 # Final graph: 1 - aggregate, 2 - separate by category (10 small plots)
 interactive_plot <- ggplotly(sample_plot)
