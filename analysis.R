@@ -5,48 +5,29 @@ library(dplyr)
 library(knitr)
 library(styler)
 
-store <- read.csv("grocery_store_data_cleaned.csv")
+origin_data <- read.csv("grocery_store_data_cleaned.csv")
 
+nameToDate <- arrange(store, REFERENCE) %>%
+  filter(UNIT_PRICEBUY != 0)%>%
+  select(NAME, DATE)
 
-# Unique product names
-product_name <- unique(store$NAME)
-
-
-# Units, reference, name, unit_pricesell/buy, category, total_pricesell/buy, margin, profit
-name_col <- store %>%
-  filter(REFERENCE == 1079) %>%
-  select(NAME)
-
-profit_col <- store %>%
-  filter(REFERENCE == 1079) %>%
-  select(PROFIT)
-
-
-
-#####
-
-product_info <- list(name = name_col, profit = profit_col)
-
-var <- for(i in 1:5){
-    store %>%
-    filter(NAME == product_name[i]) %>%
-    
-  #create_list(product_name[i])
+for(i in 1 : 10000) {
+  date1 <- as.Date(sorted_all_data[i,2])
+  date2 <- as.Date(sorted_all_data[i+1,2])
+  if(sorted_all_data[i,1] == sorted_all_data[i+1, 1] && difftime(as.POSIXct(date2), as.POSIXct(date1), units="days") > 30)
+    print(sorted_all_data[i,1])
 }
+
 
 sample_product <- store %>%
-  filter(REFERENCE == 1079)
-sample_profit <- select(sample_product, PROFIT)
-sample_total_sell <- select(sample_product, TOTAL_PRICESELL)
-sample_unit <- select(sample_product, UNITS)
+  filter(REFERENCE == 1001)
+sample_DATE <- select(sample_product, DATE)
+sample_UNITS <- select(sample_product, UNITS)
+
 
 sample_plot <- ggplot(data = sample_product) +
-  geom_point(mapping = aes(x = UNIT_PRICESELL, y = ))
+  geom_point(mapping = aes(x = UNITS, y = DATE))
 
 
-create_list <- function(name, df){
-  result <- paste0(name, "_info")
-  result <- list(profit = profit_col)
-}
 
 
