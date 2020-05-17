@@ -1,11 +1,11 @@
-install.packages("dplyr")
-install.packages("knitr")
-install.packages("styler")
+
 library(dplyr)
 library(knitr)
 library(styler)
+library(ggplot2)
+library(plotly)
 
-origin_data <- read.csv("grocery_store_data_cleaned.csv")
+origin_data <- read.csv("grocery_store_data_cleaned.csv", stringsAsFactors = FALSE)
 remove_sec <- origin_data %>%
   mutate(cleaned_date = substr(DATE, 1, 10))
 
@@ -31,7 +31,16 @@ filtered_categories <- nameToDate %>%
 
 
 sample_plot <- ggplot(data = filtered_categories) +
-  geom_point(mapping = aes(x = cleaned_date, y = sumUnit))
+  geom_point(mapping = aes(x = cleaned_date, y = sumUnit, color = CATEGORY)) +
+  scale_color_brewer(palette = "Set3")
+
+sample_plot2 <- ggplot(data = filtered_categories) +
+  geom_point(mapping = aes(x = cleaned_date, y = sumUnit)) +
+  facet_wrap(~CATEGORY)
+
+# Final graph: 1 - aggregate, 2 - separate by category (10 small plots)
+interactive_plot <- ggplotly(sample_plot)
+interactive_plot2 <- ggplotly(sample_plot2)
 
 
 
